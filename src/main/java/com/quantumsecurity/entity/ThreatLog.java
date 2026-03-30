@@ -31,6 +31,11 @@ public class ThreatLog {
     @Column(name = "detected_at")
     private LocalDateTime detectedAt;
 
+    @PrePersist
+    protected void onCreate() {
+        this.detectedAt = LocalDateTime.now();
+    }
+
     public enum ThreatType {
         BRUTE_FORCE,
         TIMING_ANOMALY,
@@ -40,4 +45,25 @@ public class ThreatLog {
 
     public ThreatLog() {}
 
+    // Getters and Setters
+    public Long getThreatId() { return threatId; }
+    public void setThreatId(Long threatId) { this.threatId = threatId; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+
+    public ThreatType getThreatType() { return threatType; }
+    public void setThreatType(ThreatType threatType) { this.threatType = threatType; }
+
+    public Integer getFailedAttemptCount() { return failedAttemptCount; }
+    public void setFailedAttemptCount(Integer failedAttemptCount) { this.failedAttemptCount = failedAttemptCount; }
+
+    public String getDetectionReason() { return detectionReason; }
+    public void setDetectionReason(String detectionReason) { this.detectionReason = detectionReason; }
+
+    public String getActionTaken() { return actionTaken; }
+    public void setActionTaken(String actionTaken) { this.actionTaken = actionTaken; }
+
+    public LocalDateTime getDetectedAt() { return detectedAt; }
+    public void setDetectedAt(LocalDateTime detectedAt) { this.detectedAt = detectedAt; }
 }

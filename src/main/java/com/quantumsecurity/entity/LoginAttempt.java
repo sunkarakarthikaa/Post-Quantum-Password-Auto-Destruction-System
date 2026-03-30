@@ -34,6 +34,11 @@ public class LoginAttempt {
     @Column(name = "attempted_at")
     private LocalDateTime attemptedAt;
 
+    @PrePersist
+    protected void onCreate() {
+        this.attemptedAt = LocalDateTime.now();
+    }
+
     public enum AttemptStatus {
         SUCCESS,
         FAILED
@@ -42,4 +47,27 @@ public class LoginAttempt {
     public LoginAttempt() {}
 
     // Getters and Setters
+    public Long getAttemptId() { return attemptId; }
+    public void setAttemptId(Long attemptId) { this.attemptId = attemptId; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+
+    public String getEmailAttempted() { return emailAttempted; }
+    public void setEmailAttempted(String emailAttempted) { this.emailAttempted = emailAttempted; }
+
+    public String getIpAddress() { return ipAddress; }
+    public void setIpAddress(String ipAddress) { this.ipAddress = ipAddress; }
+
+    public String getUserAgent() { return userAgent; }
+    public void setUserAgent(String userAgent) { this.userAgent = userAgent; }
+
+    public AttemptStatus getAttemptStatus() { return attemptStatus; }
+    public void setAttemptStatus(AttemptStatus attemptStatus) { this.attemptStatus = attemptStatus; }
+
+    public Integer getResponseTimeMs() { return responseTimeMs; }
+    public void setResponseTimeMs(Integer responseTimeMs) { this.responseTimeMs = responseTimeMs; }
+
+    public LocalDateTime getAttemptedAt() { return attemptedAt; }
+    public void setAttemptedAt(LocalDateTime attemptedAt) { this.attemptedAt = attemptedAt; }
 }
